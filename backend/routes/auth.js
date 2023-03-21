@@ -15,11 +15,12 @@ router.post('/createuser',[
     body('email', ).isEmail(),
     body('password').isLength({ min: 8}),
 ] , async(req, res) => {
+    let success = false;
     //  If there are errors, return Bad request and the errors 
     console.log(req.body);
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
-        return res.status(404).json({ errors: errors.array() });
+        return res.status(404).json({success, errors: errors.array() });
     }
     // Check weather the user with this email exists already
 
@@ -46,7 +47,8 @@ router.post('/createuser',[
         console.log({authtoken});
 
         // res.json(user)
-        res.json({authtoken})
+        success = true;
+        res.json({success, authtoken})
 
     } catch(error) {
         console.error(error.message);
