@@ -2,8 +2,25 @@ import React, { useState, useContext, useEffect } from 'react'
 import noteContext from '../context/notes/NoteContext';
 
 const User = () => {
+    const host = "http://localhost:5000"
     const context = useContext(noteContext);
-    const { getUserData } = context;
+    // const { getUserData, user } = context;
+
+    // Get User Data
+  const getUserData = async () => {
+    // API call
+    const response = await fetch(`${host}/api/auth/getuser`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem('token') 
+        },
+    });
+    const user = await response.json()
+    console.log(user)
+    return user;
+  }
+
     useEffect(() => {
         if (localStorage.getItem('token')){
             getUserData()
@@ -16,19 +33,19 @@ const User = () => {
             <div className="mb-3 row">
                 <label htmlFor="staticEmail" className="col-sm-2 col-form-label">User ID</label>
                 <div className="col-sm-10">
-                    <input type="text"  className="form-control-plaintext" id="userid" name='userid' />
+                    <input type="text"  className="form-control-plaintext" id="userid" value={"id"}  name='userid' />
                 </div>
             </div>
             <div className="mb-3 row">
                 <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Name</label>
                 <div className="col-sm-10">
-                    <input type="text"  className="form-control-plaintext" id="name" name='name' />
+                    <input type="text"  className="form-control-plaintext" id="name" value={"NAME"}  name='name' />
                 </div>
             </div>
             <div className="mb-3 row">
                 <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Email</label>
                 <div className="col-sm-10">
-                    <input type="text"  className="form-control-plaintext" id="email" name='email' />
+                    <input type="text"  className="form-control-plaintext" id="email" value={"EMAIL"}  name='email'/>
                 </div>
             </div>  
         </div>

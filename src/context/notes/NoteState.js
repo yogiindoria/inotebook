@@ -7,22 +7,22 @@ const NoteState = (props) => {
   const host = "http://localhost:5000"
 
   const notesIntial = []
-
+  // const userdata = {id: "", name: "", email: ""}
   const [notes, setNotes] = useState(notesIntial)
 
-  // Get User Data
-  const getUserData = async () => {
-    // API call
-    const response = await fetch(`${host}/api/auth/getuser`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "auth-token": localStorage.getItem('token')
-        },
-    });
-    const json = await response.json()
-    console.log(json)
-  }
+  // // Get User Data
+  // const getUserData = async () => {
+  //   // API call
+  //   const response = await fetch(`${host}/api/auth/getuser`, {
+  //       method: "POST",
+  //       headers: {
+  //           "Content-Type": "application/json",
+  //           "auth-token": localStorage.getItem('token')
+  //       },
+  //   });
+  //   const user = await response.json()
+  //   console.log(user)
+  // }
 
   // Get ALL Notes
   const getNotes = async () => {
@@ -35,7 +35,7 @@ const NoteState = (props) => {
       }
     });
     const json = await response.json()
-    console.log(json)
+    // console.log(json)
     setNotes(json)
   }
 
@@ -100,7 +100,7 @@ const NoteState = (props) => {
   }
 
   return (
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes, getUserData }}>
+    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
       {props.children}
     </NoteContext.Provider>
   )

@@ -36,20 +36,21 @@ const Signup = (props) => {
   return (
     <div>
       <div className='container'>
+      <h2 className='mx-5 my-4' style={{textAlign: "center"}}>Signup to Explore iNoteBook </h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label htmlFor="exampleInputName1" className="form-label">Name</label>
+                    <label htmlFor="exampleInputName1" className="form-label"><strong>Name</strong></label>
                     <input type="text" className="form-control"  onChange={onChange} id="name" name="name" aria-describedby="emailHelp" />                </div>
                 <div/>
                 <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Email Address</label>
+                    <label htmlFor="exampleInputEmail1" className="form-label"><strong>Email Address</strong></label>
                     <input type="text" className="form-control"  onChange={onChange} id="email" name="email" aria-describedby="emailHelp" />                </div>
                 <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                    <label htmlFor="exampleInputPassword1" className="form-label"><strong>Password</strong></label>
                     <input type="password" className="form-control"  onChange={onChange} id="password" name='password' minLength={5} required />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Confirm Password</label>
+                    <label htmlFor="exampleInputPassword1" className="form-label"><strong>Confirm Password</strong></label>
                     <input type="password" className="form-control"  onChange={onChange} id="cpassword" name='cpassword' minLength={5} required />
                 </div>
                 <button type="submit" className="btn btn-primary" >Submit</button>

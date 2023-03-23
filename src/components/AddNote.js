@@ -19,11 +19,11 @@ const AddNote = (props) => {
 
   return (
     <div className='my-3'>
-    <h1>Add a Note</h1>
+    <h2 className='my-3 mx-5' style={{textAlign: "center"}}>Add Your Note</h2>
     <div>
-      <form>
+      <form className='py-3'>
         <div className="mb-3">
-          <label htmlFor="title" className="form-label">Title</label>
+          <label htmlFor="title" className="form-label" >Title</label>
           <input type="text" className="form-control" id="title" name="title" value={note.title} aria-describedby="emailHelp" onChange={onChange} minLength={5} required/>
         </div>
         <div className="mb-3">
@@ -34,8 +34,13 @@ const AddNote = (props) => {
           <label htmlFor="tag" className="form-label">Tag</label>
           <input type="text" className="form-control" id="tag" name="tag" value={note.tag} onChange={onChange}  required/>
         </div>
-        
-        <button disabled={note.title.length<5 || note.description.length<5} type="submit" className="btn btn-primary" onClick={handleSubmit} >Add Note</button>
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}>
+        <button disabled={note.title.length<5 || note.description.length<5} type="submit" className="btn btn-primary my-3"  onClick={handleSubmit}>Add Note</button>
+        </div>
       </form>
     </div>
   </div>
