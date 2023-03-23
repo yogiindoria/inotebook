@@ -1,10 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react'
-import noteContext from '../context/notes/NoteContext';
 
 const User = () => {
     const host = "http://localhost:5000"
-    const context = useContext(noteContext);
-    // const { getUserData, user } = context;
+    const [user, setUser] = useState({userid: "", name: "", email: ""})
 
     // Get User Data
   const getUserData = async () => {
@@ -16,9 +14,9 @@ const User = () => {
             "auth-token": localStorage.getItem('token') 
         },
     });
-    const user = await response.json()
-    console.log(user)
-    return user;
+    const item = await response.json()
+    console.log(item)
+    setUser(item)
   }
 
     useEffect(() => {
@@ -28,24 +26,30 @@ const User = () => {
         }    
     }, [])
 
+    const onChange = (e) => {
+        setUser({...user, [e.target.name]: e.target.value})
+    }
+
     return (
         <div className='container'>
             <div className="mb-3 row">
-                <label htmlFor="staticEmail" className="col-sm-2 col-form-label">User ID</label>
+                <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>User ID</strong></label>
                 <div className="col-sm-10">
-                    <input type="text"  className="form-control-plaintext" id="userid" value={"id"}  name='userid' />
+                    <input type="text"  className="form-control-plaintext" id="userid" onChange={onChange} value={user._id}  name='userid' />
                 </div>
             </div>
             <div className="mb-3 row">
-                <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Name</label>
+                <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>Name</strong></label>
                 <div className="col-sm-10">
-                    <input type="text"  className="form-control-plaintext" id="name" value={"NAME"}  name='name' />
+                    <strong>
+                    <input type="text"  className="form-control-plaintext" id="name" value={user.name}  name='name' />
+                    </strong>
                 </div>
             </div>
             <div className="mb-3 row">
-                <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Email</label>
+                <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>Email</strong></label>
                 <div className="col-sm-10">
-                    <input type="text"  className="form-control-plaintext" id="email" value={"EMAIL"}  name='email'/>
+                    <input type="text"  className="form-control-plaintext" id="email" value={user.email}  name='email'/>
                 </div>
             </div>  
         </div>

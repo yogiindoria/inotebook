@@ -7,22 +7,7 @@ const NoteState = (props) => {
   const host = "http://localhost:5000"
 
   const notesIntial = []
-  // const userdata = {id: "", name: "", email: ""}
   const [notes, setNotes] = useState(notesIntial)
-
-  // // Get User Data
-  // const getUserData = async () => {
-  //   // API call
-  //   const response = await fetch(`${host}/api/auth/getuser`, {
-  //       method: "POST",
-  //       headers: {
-  //           "Content-Type": "application/json",
-  //           "auth-token": localStorage.getItem('token')
-  //       },
-  //   });
-  //   const user = await response.json()
-  //   console.log(user)
-  // }
 
   // Get ALL Notes
   const getNotes = async () => {
