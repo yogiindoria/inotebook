@@ -4,6 +4,7 @@ var fetchuser = require('../middleware/fetchuser');
 const Notes = require("../models/Notes");
 const { body, validationResult } = require('express-validator');
 
+
 // ROUTE 1: Fetch All te Notes using: GET "/api/notes/fetchallnotes". Login Require
 router.get('/fetchallnotes', fetchuser, async (req, res)=>{
     try {
@@ -22,7 +23,7 @@ router.post('/addnote', fetchuser, [
 ], async (req, res)=>{
 
     try {
-        const { title, description, tag } = req.body;
+        const { title, description, tag} = req.body;
 
      //  If there are errors, return Bad request and the errors 
      console.log(req.body);
